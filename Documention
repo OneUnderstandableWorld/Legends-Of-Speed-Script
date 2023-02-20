@@ -1,0 +1,133 @@
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+local Window = Rayfield:CreateWindow({
+   Name = "One Understandable World - Legends Of Speed",
+   LoadingTitle = ".O.U.W.",
+   LoadingSubtitle = "by One Understandable World",
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = nil, -- Create a custom folder for your hub/game
+      FileName = ""
+   },
+   Discord = {
+      Enabled = false,
+      Invite = "DQrBFVNTFD", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD.
+      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+   },
+   KeySystem = true, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "One Understandable World",
+      Subtitle = "Key System",
+      Note = "Join the discord (discord.gg/DQrBVNTFD)",
+      FileName = "OUWKey",
+      SaveKey = true,
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = ".O.U.W."
+   }
+})
+
+local Tab = Window:CreateTab("Character", 4483362458) -- Title, Image
+
+local Section = Tab:CreateSection("Local Player")
+local Slider = Tab:CreateSlider({
+   Name = "Walkspeed",
+   Range = {16, 500},
+   Increment = 10,
+   Suffix = "Walkspeed",
+   CurrentValue = 16,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(s)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+   end,
+})
+
+local Slider = Tab:CreateSlider({
+   Name = "Jump Power",
+   Range = {16, 500},
+   Increment = 10,
+   Suffix = "Jump Power",
+   CurrentValue = 16,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(s)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
+   end,
+})
+
+local Tab = Window:CreateTab("Utilities", 4483362458) -- Title, Image
+local Section = Tab:CreateSection("Farm")
+local Button = Tab:CreateButton({
+   Name = "Auto Collect Orbs (Could Lag)",
+   Callback = function()
+while true do
+local A_1 = "collectOrb"
+local A_2 = "Blue Orb"
+local A_3 = "City"
+local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent
+Event:FireServer(A_1, A_2, A_3)
+wait(0.1)
+end
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Snow City Auto Orbs",
+   Callback = function()
+while true do
+local A_1 = "collectOrb"
+local A_2 = "Yellow Orb"
+local A_3 = "Snow City"
+local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent
+Event:FireServer(A_1, A_2, A_3)
+wait(0.1)
+end
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Auto Rebirth",
+   Callback = function()
+while true do
+local A_1 = "rebirthRequest"
+local Event = game:GetService("ReplicatedStorage").rEvents.rebirthEvent
+Event:FireServer(A_1)
+wait(0.1)
+end
+   end,
+})
+
+local Tab = Window:CreateTab("Teleportation", 4483362458) -- Title, Image
+local Section = Tab:CreateSection("New Zones")
+local Button = Tab:CreateButton({
+   Name = "Mysterious Cave",
+   Callback = function()
+local pl = game.Players.LocalPlayer.Character.HumanoidRootPart
+local location = CFrame.new(-9685, 59, 3755)
+pl.CFrame = location
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Pirate Course",
+   Callback = function()
+local pl = game.Players.LocalPlayer.Character.HumanoidRootPart
+local location = CFrame.new(-1612, 101, 5671)
+pl.CFrame = location
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Inferno Cave",
+   Callback = function()
+local pl = game.Players.LocalPlayer.Character.HumanoidRootPart
+local location = CFrame.new(-11058, 217, 4871)
+pl.CFrame = location
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Electro Cave",
+   Callback = function()
+
+   end,
+})
+
+Rayfield:LoadConfiguration()
